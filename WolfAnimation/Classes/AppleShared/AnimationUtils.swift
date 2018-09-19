@@ -3,7 +3,6 @@
 //  WolfAnimation
 //
 //  Created by Wolf McNally on 7/20/15.
-//  Copyright © 2015 Wolf McNally.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

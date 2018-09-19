@@ -2,8 +2,7 @@
 //  AppDelegate.swift
 //  WolfAnimation
 //
-//  Created by Wolf McNally on 09/15/2018.
-//  Copyright © 2018 Wolf McNally.
+//  Created by Wolf McNally on 09/15/18.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

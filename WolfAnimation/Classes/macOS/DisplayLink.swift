@@ -6,6 +6,7 @@
 //
 
 import AppKit
+import WolfFoundation
 
 private func timerCallback(timer: CVDisplayLink, currentTime: UnsafePointer<CVTimeStamp>, outputTime: UnsafePointer<CVTimeStamp>, _: CVOptionFlags, _: UnsafeMutablePointer<CVOptionFlags>, sourceUnsafeRaw: UnsafeMutableRawPointer?) -> CVReturn {
     // Un-opaque the source
