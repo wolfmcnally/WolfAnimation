@@ -24,6 +24,7 @@
 
 import UIKit
 import WolfConcurrency
+import WolfPipe
 
 public class BounceAnimation {
     private unowned let view: UIView
@@ -35,16 +36,16 @@ public class BounceAnimation {
 
     public func animateDown() {
         isReleased = false
-        dispatchAnimated(duration: 0.1, options: [.beginFromCurrentState, .curveEaseOut]) {
+        run <| animation(duration: 0.1, options: [.beginFromCurrentState, .curveEaseOut]) {
             self.view.transform = .init(scaleX: 0.7, y: 0.7)
-        }.run()
+        }
     }
 
     public func animateUp() {
         guard !isReleased else { return }
-        dispatchAnimated(duration: 0.1, options: [.beginFromCurrentState, .curveEaseInOut]) {
+        run <| animation(duration: 0.1, options: [.beginFromCurrentState, .curveEaseInOut]) {
             self.view.transform = .identity
-        }.run()
+        }
     }
 
     private var completion: Block?
@@ -63,7 +64,7 @@ public class BounceAnimation {
         }
     }
 
-    public func animate(oldHighlighted: Bool, newHighlighted: Bool) {
+    public func animateHighlight(oldHighlighted: Bool, newHighlighted: Bool) {
         guard oldHighlighted != newHighlighted else { return }
         if newHighlighted == true {
             animateDown()
@@ -72,7 +73,7 @@ public class BounceAnimation {
         }
     }
 
-    public func animate(oldSelected: Bool, newSelected: Bool) {
+    public func animateSelect(oldSelected: Bool, newSelected: Bool) {
         guard oldSelected != newSelected else { return }
         if newSelected == true {
             animateRelease()

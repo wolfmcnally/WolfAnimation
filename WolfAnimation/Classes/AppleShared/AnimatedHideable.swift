@@ -29,6 +29,8 @@ import UIKit
 #endif
 
 import WolfFoundation
+import WolfPipe
+import WolfConcurrency
 
 public protocol AnimatedHideable: Hideable {
     var alpha: CGFloat { get set }
@@ -37,19 +39,19 @@ public protocol AnimatedHideable: Hideable {
 extension AnimatedHideable {
     public func hide(animated: Bool) {
         guard !isHidden else { return }
-        dispatchAnimated(animated, options: [.beginFromCurrentState]) {
+        run <| animation(animated, options: [.beginFromCurrentState]) {
             self.alpha = 0
-        }.then { _ in
+        } ||* {
             self.hide()
-        }.run()
+        }
     }
 
     public func show(animated: Bool) {
         guard isHidden else { return }
-        dispatchAnimated(animated, options: [.beginFromCurrentState]) {
+        run <| animation(animated, options: [.beginFromCurrentState]) {
             self.show()
             self.alpha = 1
-        }.run()
+        }
     }
 
     public func showIf(_ condition: Bool, animated: Bool) {
