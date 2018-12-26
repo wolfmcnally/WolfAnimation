@@ -37,36 +37,38 @@ public protocol AnimatedHideable: Hideable {
 }
 
 extension AnimatedHideable {
-    public func hide(animated: Bool) {
+    public func hide(animated: Bool, duration: TimeInterval? = nil) {
         guard !isHidden else { return }
-        run <| animation(animated, options: [.beginFromCurrentState]) {
+        let duration = duration ?? defaultAnimationDuration
+        run <| animation(animated, duration: duration, options: [.beginFromCurrentState]) {
             self.alpha = 0
         } ||* {
             self.hide()
         }
     }
 
-    public func show(animated: Bool) {
+    public func show(animated: Bool, duration: TimeInterval? = nil) {
         guard isHidden else { return }
-        run <| animation(animated, options: [.beginFromCurrentState]) {
+        let duration = duration ?? defaultAnimationDuration
+        run <| animation(animated, duration: duration, options: [.beginFromCurrentState]) {
             self.show()
             self.alpha = 1
         }
     }
 
-    public func showIf(_ condition: Bool, animated: Bool) {
+    public func showIf(_ condition: Bool, animated: Bool, duration: TimeInterval? = nil) {
         if condition {
-            show(animated: animated)
+            show(animated: animated, duration: duration)
         } else {
-            hide(animated: animated)
+            hide(animated: animated, duration: duration)
         }
     }
 
-    public func hideIf(_ condition: Bool, animated: Bool) {
+    public func hideIf(_ condition: Bool, animated: Bool, duration: TimeInterval? = nil) {
         if condition {
-            hide(animated: animated)
+            hide(animated: animated, duration: duration)
         } else {
-            show(animated: animated)
+            show(animated: animated, duration: duration)
         }
     }
 }
