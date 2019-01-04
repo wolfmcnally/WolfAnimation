@@ -1,6 +1,6 @@
 PODS:
   - ExtensibleEnumeratedName (1.0.3)
-  - WolfAnimation (1.0.1):
+  - WolfAnimation (1.1.0):
     - WolfConcurrency
     - WolfFoundation
     - WolfLog
@@ -8,7 +8,7 @@ PODS:
     - WolfFoundation
     - WolfLog
     - WolfNumerics
-  - WolfFoundation (2.1.0):
+  - WolfFoundation (2.2.0):
     - WolfNumerics
     - WolfPipe
   - WolfLog (1.0.2):
@@ -18,7 +18,7 @@ PODS:
   - WolfNumerics (3.0.0)
   - WolfOSBridge (1.1.0)
   - WolfPipe (1.1.0)
-  - WolfStrings (1.2.1):
+  - WolfStrings (1.2.2):
     - ExtensibleEnumeratedName
     - WolfNumerics
     - WolfOSBridge
@@ -47,14 +47,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ExtensibleEnumeratedName: c6caeb662f79105e7229a613f9043e8a7e15e642
-  WolfAnimation: 357e094c886389a6f805e5330a11aa941abfc5e3
+  WolfAnimation: 57207d196fde58a6fc4a63ecc24c4d0e2e430e1b
   WolfConcurrency: 47b03b9c2e35dc663b56970777a2b7368821a412
-  WolfFoundation: e3738fadbd87d3867c9a3894eed514576f7c6896
+  WolfFoundation: 03cfb3bd3e9ff51b853dbb9867bfe0e9b08321d9
   WolfLog: 6329a08de6c099ca6ccea857127d9df2f74dfea3
   WolfNumerics: 073642f01957a5602df21531e8b2fd31e8b92042
   WolfOSBridge: b44c359c659d4ac704602f3f18336ffedfbb5d6a
   WolfPipe: 5d5633fb37d8a524e326ad9cf24420f0971c8235
-  WolfStrings: cb9fa16cb9853699764ee7f1eda2bcc75fe9d4f2
+  WolfStrings: d41c50dbd472b31ee1e3f4ff3c74c7830e20d851
   WolfWith: 46dbfeaa023972bb82387740ca38c976bc65fbac
 
 PODFILE CHECKSUM: 8b38bf1e548489c1be2dbb7db76c0b1cfd5cf5dc
