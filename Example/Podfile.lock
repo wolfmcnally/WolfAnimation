@@ -1,10 +1,10 @@
 PODS:
   - ExtensibleEnumeratedName (1.0.3)
-  - WolfAnimation (1.1.0):
+  - WolfAnimation (1.2.1):
     - WolfConcurrency
     - WolfFoundation
     - WolfLog
-  - WolfConcurrency (1.1.2):
+  - WolfConcurrency (1.1.3):
     - WolfFoundation
     - WolfLog
     - WolfNumerics
@@ -47,8 +47,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ExtensibleEnumeratedName: c6caeb662f79105e7229a613f9043e8a7e15e642
-  WolfAnimation: 57207d196fde58a6fc4a63ecc24c4d0e2e430e1b
-  WolfConcurrency: 47b03b9c2e35dc663b56970777a2b7368821a412
+  WolfAnimation: ee7157133a9260dfd477f09ad16be014b05769bb
+  WolfConcurrency: e2f17139a61ab6b26ea63e31f9c73ebe55295b18
   WolfFoundation: 03cfb3bd3e9ff51b853dbb9867bfe0e9b08321d9
   WolfLog: 6329a08de6c099ca6ccea857127d9df2f74dfea3
   WolfNumerics: 073642f01957a5602df21531e8b2fd31e8b92042
