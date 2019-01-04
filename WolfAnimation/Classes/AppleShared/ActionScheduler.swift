@@ -26,7 +26,17 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-public class ActionScheduler {
+import WolfConcurrency
+
+public class ActionScheduler: Cancelable {
+    public var isCanceled: Bool {
+        return animations.isEmpty
+    }
+
+    public func cancel() {
+        removeAll()
+    }
+
     // MARK: - Public
 
     /**

@@ -38,9 +38,9 @@ public enum Easing {
     case linear
 
     // Sine
-    case sineIn
-    case sineOut
-    case sineInOut
+    case easeIn
+    case easeOut
+    case easeInOut
 
     // Exponential
     case exponentialIn
@@ -70,20 +70,26 @@ public enum Easing {
             return t
 
         // **** Sine ****
-        case .sineIn:
-            return -1.0 * cos(t * (.pi/2)) + 1.0
+        case .easeIn:
+            // https://www.wolframalpha.com/input/?i=Plot%5B1+-+Cos%5Bt+*+Pi+%2F+2%5D,+%7Bt,+0,+1%7D%5D
+            return 1.0 - cos(t * .pi / 2)
 
-        case .sineOut:
-            return sin(t * (.pi/2))
+        case .easeOut:
+            // https://www.wolframalpha.com/input/?i=Plot%5BSin%5Bt+*+Pi+%2F+2%5D,+%7Bt,+0,+1%7D%5D
+            return sin(t * .pi / 2)
 
-        case .sineInOut:
-            return -0.5 * (cos(.pi*t) - 1.0)
+        case .easeInOut:
+            // https://www.wolframalpha.com/input/?i=Plot%5BSin%5Bt+*+Pi+%2F+2%5D%5E2,+%7Bt,+0,+1%7D%5D
+            let a = sin(t * .pi / 2)
+            return a * a
 
         // **** Exponential ****
         case .exponentialIn:
+            // https://www.wolframalpha.com/input/?i=Plot%5BPower%5B2.0,+10.0+*+(t%2F1.0+-+1.0)%5D+-+1.0+*+0.001,+%7Bt,+0,+1%7D%5D
             return (t==0.0) ? 0.0 : pow(2.0, 10.0 * (t/1.0 - 1.0)) - 1.0 * 0.001;
 
         case .exponentialOut:
+            // https://www.wolframalpha.com/input/?i=Plot%5B-Power%5B2.0,+-10.0+*+t%2F1.0)+%2B+1.0%5D,+%7Bt,+0,+1%7D%5D
             return (t==1.0) ? 1.0 : (-pow(2.0, -10.0 * t/1.0) + 1.0);
 
         case .exponentialInOut:
@@ -99,6 +105,7 @@ public enum Easing {
 
         // **** Back ****
         case .backIn:
+            // https://www.wolframalpha.com/input/?i=Plot%5Bt+*+t+*+((1.70158+%2B+1.0)+*+t+-+1.70158),+%7Bt,+0,+1%7D%5D
             let overshoot = 1.70158
             return t * t * ((overshoot + 1.0) * t - overshoot);
 

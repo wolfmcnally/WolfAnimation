@@ -122,14 +122,15 @@ public func animationOptions(for curve: UIView.AnimationCurve) -> UIView.Animati
     }
 }
 
-public typealias ActionPromise = Promise<ActionScheduler>
-
-public func animation(action: FiniteTimeAction) -> ActionPromise {
-    return ActionPromise { promise in
+public func animation(action: FiniteTimeAction) -> SuccessPromise {
+    return SuccessPromise { promise in
         let scheduler = ActionScheduler()
         action.onBecomeInactive = {
-            promise.keep(scheduler)
+            dispatchOnMain {
+                promise.keep()
+            }
         }
+        promise.task = scheduler
         scheduler.run(action: action)
     }
 }
