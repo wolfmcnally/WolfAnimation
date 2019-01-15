@@ -37,13 +37,21 @@ public protocol AnimatedHideable: Hideable {
 }
 
 extension AnimatedHideable {
-    public func hide(animated: Bool, duration: TimeInterval? = nil) {
+    /// `hideWithFade` is useful for hiding views arranged by stack views. Hiding views
+    /// within stack views inside an animation block triggers a "compressing" size animation.
+    /// This makes it desirable to hide *and* fade at the same time.
+    public func hide(animated: Bool, duration: TimeInterval? = nil, hideWithFade: Bool = false) {
         guard !isHidden else { return }
         let duration = duration ?? defaultAnimationDuration
         run <| animation(animated, duration: duration, options: [.beginFromCurrentState]) {
+            if hideWithFade {
+                self.hide()
+            }
             self.alpha = 0
         } ||* {
-            self.hide()
+            if !hideWithFade {
+                self.hide()
+            }
         }
     }
 
@@ -70,5 +78,12 @@ extension AnimatedHideable {
         } else {
             show(animated: animated, duration: duration)
         }
+    }
+}
+
+public func hide<T: AnimatedHideable>(animated: Bool, duration: TimeInterval? = nil, hideWithFade: Bool = false) -> (_ t: T) -> T {
+    return { t in
+        t.hide(animated: animated, duration: duration, hideWithFade: hideWithFade)
+        return t
     }
 }
