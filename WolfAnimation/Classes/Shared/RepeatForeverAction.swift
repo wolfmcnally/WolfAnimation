@@ -86,7 +86,7 @@ public class RepeatForeverAction: InfiniteTimeAction {
 }
 
 public extension FiniteTimeAction {
-    public func repeatedForever() -> RepeatForeverAction {
+    func repeatedForever() -> RepeatForeverAction {
         return RepeatForeverAction(action: self)
     }
 }

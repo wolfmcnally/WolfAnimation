@@ -114,7 +114,7 @@ public class RepeatAction: FiniteTimeAction {
 }
 
 public extension FiniteTimeAction {
-    public func repeated(_ times: Int) -> RepeatAction {
+    func repeated(_ times: Int) -> RepeatAction {
         return RepeatAction(action: self, times: times)
     }
 }

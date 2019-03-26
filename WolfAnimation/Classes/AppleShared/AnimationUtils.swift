@@ -119,6 +119,8 @@ public func animationOptions(for curve: UIView.AnimationCurve) -> UIView.Animati
         return [.curveEaseOut]
     case .linear:
         return [.curveLinear]
+    @unknown default:
+        fatalError()
     }
 }
 
