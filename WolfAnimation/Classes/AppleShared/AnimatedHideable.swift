@@ -30,7 +30,7 @@ import UIKit
 
 import WolfFoundation
 import WolfPipe
-import WolfConcurrency
+import WolfNIO
 
 public protocol AnimatedHideable: Hideable {
     var alpha: CGFloat { get set }
@@ -40,43 +40,44 @@ extension AnimatedHideable {
     /// `hideWithFade` is useful for hiding views arranged by stack views. Hiding views
     /// within stack views inside an animation block triggers a "compressing" size animation.
     /// This makes it desirable to hide *and* fade at the same time.
-    public func hide(animated: Bool, duration: TimeInterval? = nil, hideWithFade: Bool = false) {
-        guard !isHidden else { return }
+    @discardableResult public func hide(animated: Bool, duration: TimeInterval? = nil, hideWithFade: Bool = false) -> Future<Bool> {
+        guard !isHidden else { return animationEventLoop.future(true) }
         let duration = duration ?? defaultAnimationDuration
-        run <| animation(animated, duration: duration, options: [.beginFromCurrentState]) {
+
+        return animation(animated, duration: duration, options: [.beginFromCurrentState]) {
             if hideWithFade {
                 self.hide()
             }
             self.alpha = 0
-        } ||* {
+        }.always {
             if !hideWithFade {
                 self.hide()
             }
         }
     }
 
-    public func show(animated: Bool, duration: TimeInterval? = nil) {
-        guard isHidden else { return }
+    @discardableResult public func show(animated: Bool, duration: TimeInterval? = nil) -> Future<Bool> {
+        guard isHidden else { return animationEventLoop.future(true) }
         let duration = duration ?? defaultAnimationDuration
-        run <| animation(animated, duration: duration, options: [.beginFromCurrentState]) {
+        return animation(animated, duration: duration, options: [.beginFromCurrentState]) {
             self.show()
             self.alpha = 1
         }
     }
 
-    public func showIf(_ condition: Bool, animated: Bool, duration: TimeInterval? = nil) {
+    @discardableResult public func showIf(_ condition: Bool, animated: Bool, duration: TimeInterval? = nil) -> Future<Bool> {
         if condition {
-            show(animated: animated, duration: duration)
+            return show(animated: animated, duration: duration)
         } else {
-            hide(animated: animated, duration: duration)
+            return hide(animated: animated, duration: duration)
         }
     }
 
-    public func hideIf(_ condition: Bool, animated: Bool, duration: TimeInterval? = nil) {
+    @discardableResult public func hideIf(_ condition: Bool, animated: Bool, duration: TimeInterval? = nil) -> Future<Bool> {
         if condition {
-            hide(animated: animated, duration: duration)
+            return hide(animated: animated, duration: duration)
         } else {
-            show(animated: animated, duration: duration)
+            return show(animated: animated, duration: duration)
         }
     }
 }

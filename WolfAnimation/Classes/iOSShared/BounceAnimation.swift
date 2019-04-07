@@ -36,14 +36,14 @@ public class BounceAnimation {
 
     public func animateDown() {
         isReleased = false
-        run <| animation(duration: 0.1, options: [.beginFromCurrentState, .curveEaseOut]) {
+        _ = animation(duration: 0.1, options: [.beginFromCurrentState, .curveEaseOut]) {
             self.view.transform = .init(scaleX: 0.7, y: 0.7)
         }
     }
 
     public func animateUp() {
         guard !isReleased else { return }
-        run <| animation(duration: 0.1, options: [.beginFromCurrentState, .curveEaseInOut]) {
+        _ = animation(duration: 0.1, options: [.beginFromCurrentState, .curveEaseInOut]) {
             self.view.transform = .identity
         }
     }

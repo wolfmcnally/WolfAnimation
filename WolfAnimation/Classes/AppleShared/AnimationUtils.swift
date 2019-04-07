@@ -22,7 +22,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+import WolfNIO
 import WolfConcurrency
+
+public let animationEventLoopGroup = NIOTSEventLoopGroup(loopCount: 1, defaultQoS: .userInteractive)
+public let animationEventLoop = animationEventLoopGroup.next()
 
 #if canImport(AppKit)
 import AppKit
@@ -66,8 +70,9 @@ public let defaultAnimationDuration: TimeInterval = 0.4
 
 #if os(macOS)
 
-public func animation(_ animated: Bool = true, duration: TimeInterval = defaultAnimationDuration, delay: TimeInterval = 0.0, options: OSViewAnimationOptions = [], animations: @escaping Block) -> SuccessPromise {
-    return SuccessPromise { promise in
+public func animation(_ animated: Bool = true, duration: TimeInterval = defaultAnimationDuration, delay: TimeInterval = 0.0, options: OSViewAnimationOptions = [], animations: @escaping Block) -> Future<Bool> {
+    let promise = animationEventLoop.makePromise(of: Bool.self)
+    dispatchOnMain {
         if animated {
             NSAnimationContext.runAnimationGroup({ context in
                 context.duration = duration
@@ -83,30 +88,32 @@ public func animation(_ animated: Bool = true, duration: TimeInterval = defaultA
                 }
                 animations()
             }, completionHandler: {
-                promise.keep()
+                promise.succeed(true)
             }
             )
         } else {
             animations()
-            promise.keep()
+            promise.succeed(true)
         }
     }
+    return promise.futureResult
 }
 
 #else
 
-public func animation(_ animated: Bool = true, duration: TimeInterval = defaultAnimationDuration, delay: TimeInterval = 0.0, options: OSViewAnimationOptions = [], animations: @escaping Block) -> Promise<Bool> {
-    return Promise<Bool> { promise in
-        checkMainThread()
+@discardableResult public func animation(_ animated: Bool = true, duration: TimeInterval = defaultAnimationDuration, delay: TimeInterval = 0.0, options: OSViewAnimationOptions = [], animations: @escaping Block) -> Future<Bool> {
+    let promise = animationEventLoop.makePromise(of: Bool.self)
+    dispatchOnMain {
         if animated {
             UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations) { finished in
-                promise.keep(finished)
+                promise.succeed(finished)
             }
         } else {
             animations()
-            promise.keep(true)
+            promise.succeed(true)
         }
     }
+    return promise.futureResult
 }
 
 public func animationOptions(for curve: UIView.AnimationCurve) -> UIView.AnimationOptions {
@@ -124,17 +131,18 @@ public func animationOptions(for curve: UIView.AnimationCurve) -> UIView.Animati
     }
 }
 
-public func animation(action: FiniteTimeAction) -> SuccessPromise {
-    return SuccessPromise { promise in
+public func animation(action: FiniteTimeAction) -> Future<ActionScheduler> {
+    let promise = animationEventLoop.makePromise(of: ActionScheduler.self)
+    dispatchOnMain {
         let scheduler = ActionScheduler()
         action.onBecomeInactive = {
             dispatchOnMain {
-                promise.keep()
+                promise.succeed(scheduler)
             }
         }
-        promise.task = scheduler
         scheduler.run(action: action)
     }
+    return promise.futureResult
 }
 
 #endif
