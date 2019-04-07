@@ -70,7 +70,7 @@ public let defaultAnimationDuration: TimeInterval = 0.4
 
 #if os(macOS)
 
-public func animation(_ animated: Bool = true, duration: TimeInterval = defaultAnimationDuration, delay: TimeInterval = 0.0, options: OSViewAnimationOptions = [], animations: @escaping Block) -> Future<Bool> {
+@discardableResult public func animation(_ animated: Bool = true, duration: TimeInterval = defaultAnimationDuration, delay: TimeInterval = 0.0, options: OSViewAnimationOptions = [], animations: @escaping Block) -> Future<Bool> {
     let promise = animationEventLoop.makePromise(of: Bool.self)
     dispatchOnMain {
         if animated {
