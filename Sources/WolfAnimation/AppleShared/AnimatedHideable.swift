@@ -40,7 +40,7 @@ extension AnimatedHideable {
     /// within stack views inside an animation block triggers a "compressing" size animation.
     /// This makes it desirable to hide *and* fade at the same time.
     @discardableResult public func hide(animated: Bool, duration: TimeInterval? = nil, hideWithFade: Bool = false) -> Future<Bool> {
-        guard !isHidden else { return animationEventLoop.future(true) }
+        guard !isHidden else { return MainEventLoop.shared.future(true) }
         let duration = duration ?? defaultAnimationDuration
 
         return animation(animated, duration: duration, options: [.beginFromCurrentState]) {
@@ -49,16 +49,14 @@ extension AnimatedHideable {
             }
             self.alpha = 0
         }.always {
-            dispatchOnMain {
-                if !hideWithFade {
-                    self.hide()
-                }
+            if !hideWithFade {
+                self.hide()
             }
         }
     }
 
     @discardableResult public func show(animated: Bool, duration: TimeInterval? = nil) -> Future<Bool> {
-        guard isHidden else { return animationEventLoop.future(true) }
+        guard isHidden else { return MainEventLoop.shared.future(true) }
         let duration = duration ?? defaultAnimationDuration
         return animation(animated, duration: duration, options: [.beginFromCurrentState]) {
             self.show()

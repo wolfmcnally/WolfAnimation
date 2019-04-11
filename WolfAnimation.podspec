@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'WolfAnimation'
-    s.version          = '3.0.2'
+    s.version          = '3.0.3'
     s.summary          = 'Tools for Core Animation and time-sequencing events.'
 
     s.homepage         = 'https://github.com/wolfmcnally/WolfAnimation'

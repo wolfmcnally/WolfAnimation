@@ -25,9 +25,6 @@
 import WolfNIO
 import WolfCore
 
-public let animationEventLoopGroup = NIOTSEventLoopGroup(loopCount: 1, defaultQoS: .userInteractive)
-public let animationEventLoop = animationEventLoopGroup.next()
-
 #if canImport(AppKit)
 import AppKit
 public struct OSViewAnimationOptions: OptionSet {
@@ -102,7 +99,7 @@ public let defaultAnimationDuration: TimeInterval = 0.4
 #else
 
 @discardableResult public func animation(_ animated: Bool = true, duration: TimeInterval = defaultAnimationDuration, delay: TimeInterval = 0.0, options: OSViewAnimationOptions = [], animations: @escaping Block) -> Future<Bool> {
-    let promise = animationEventLoop.makePromise(of: Bool.self)
+    let promise = MainEventLoop.shared.makePromise(of: Bool.self)
     dispatchOnMain {
         if animated {
             UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations) { finished in
@@ -132,7 +129,7 @@ public func animationOptions(for curve: UIView.AnimationCurve) -> UIView.Animati
 }
 
 public func animation(action: FiniteTimeAction) -> Future<ActionScheduler> {
-    let promise = animationEventLoop.makePromise(of: ActionScheduler.self)
+    let promise = MainEventLoop.shared.makePromise(of: ActionScheduler.self)
     dispatchOnMain {
         let scheduler = ActionScheduler()
         action.onBecomeInactive = {
