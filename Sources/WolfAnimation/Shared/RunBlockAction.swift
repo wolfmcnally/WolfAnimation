@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Runs a block. Can be used to add callbacks in sequences */
 public class RunBlockAction: TriggerAction {

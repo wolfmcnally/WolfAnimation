@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Animates inner action to end and then back to beginning */
 public class YoyoAction: FiniteTimeAction {

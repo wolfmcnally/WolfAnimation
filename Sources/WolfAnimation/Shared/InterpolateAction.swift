@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Action to animate between two values */
 public class InterpolationAction<T: Interpolable>: FiniteTimeAction {

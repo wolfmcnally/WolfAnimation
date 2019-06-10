@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Can be used to add a delay to a sequence */
 public class DelayAction: FiniteTimeAction {

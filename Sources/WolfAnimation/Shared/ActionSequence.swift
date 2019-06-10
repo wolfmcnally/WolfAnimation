@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 class SequenceActionWrapper {
 

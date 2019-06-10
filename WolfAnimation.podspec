@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     s.author           = { 'Wolf McNally' => 'wolf@wolfmcnally.com' }
     s.source           = { :git => 'https://github.com/wolfmcnally/WolfAnimation.git', :tag => s.version.to_s }
 
-    s.swift_version = '5.0'
+    s.swift_version = '5.1'
 
     s.ios.deployment_target = '12.0'
     s.ios.source_files = 'Sources/WolfAnimation/Shared/**/*', 'Sources/WolfAnimation/iOS/**/*', 'Sources/WolfAnimation/iOSShared/**/*', 'Sources/WolfAnimation/AppleShared/**/*'

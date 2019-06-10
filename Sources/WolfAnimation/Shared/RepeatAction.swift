@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Repeats an inner action a specified number of times */
 public class RepeatAction: FiniteTimeAction {

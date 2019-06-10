@@ -26,7 +26,9 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
+#if os(iOS)
 import WolfCore
+import CoreFoundation
 
 public class ActionScheduler: Cancelable {
     public var isCanceled: Bool {
@@ -180,3 +182,4 @@ public class ActionScheduler: Cancelable {
 
     }
 }
+#endif

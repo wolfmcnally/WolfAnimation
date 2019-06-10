@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 // MARK: - Schedulable Action
 

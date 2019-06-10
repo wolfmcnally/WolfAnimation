@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Repeats inner action forever */
 public class RepeatForeverAction: InfiniteTimeAction {

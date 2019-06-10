@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import Foundation
 
 public enum Easing {
     private typealias `Self` = Easing

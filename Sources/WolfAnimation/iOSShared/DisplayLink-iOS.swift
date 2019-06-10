@@ -1,5 +1,5 @@
 //
-//  DisplayLink.swift
+//  DisplayLink-iOS.swift
 //  WolfAnimation
 //
 //  Created by Wolf McNally on 6/30/17.
@@ -22,6 +22,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
+#if os(iOS)
+import UIKit
 import WolfCore
 
 public class DisplayLink: Invalidatable {
@@ -78,3 +80,4 @@ public class DisplayLink: Invalidatable {
         set { displayLink.preferredFramesPerSecond = newValue }
     }
 }
+#endif
