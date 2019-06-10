@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "WolfAnimation",
     platforms: [
-        .iOS(.v12), .macOS(.v10_14), .tvOS(.v12)
+        .iOS(.v12), .tvOS(.v12), .macOS(.v10_13)
     ],
     products: [
         .library(
