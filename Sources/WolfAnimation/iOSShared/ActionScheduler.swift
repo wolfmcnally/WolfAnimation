@@ -26,7 +26,7 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-#if os(iOS)
+#if canImport(UIKit)
 import WolfCore
 import CoreFoundation
 
