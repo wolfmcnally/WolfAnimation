@@ -1,10 +1,11 @@
 //
-//  DisplayLink.swift
-//  WolfCore-macOS
+//  DisplayLink-macOS.swift
+//  WolfAnimation
 //
 //  Created by Wolf McNally on 4/3/18.
 //
 
+#if os(macOS)
 import AppKit
 import WolfCore
 
@@ -111,3 +112,4 @@ public class DisplayLink: Invalidatable {
         invalidate()
     }
 }
+#endif

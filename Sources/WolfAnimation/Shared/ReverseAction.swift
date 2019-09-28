@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Reverses the inner action */
 public class ReverseAction: FiniteTimeAction {

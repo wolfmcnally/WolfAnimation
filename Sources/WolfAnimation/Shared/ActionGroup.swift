@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /** Runs several actions in parallel */
 public class ActionGroup: FiniteTimeAction, SchedulableAction {

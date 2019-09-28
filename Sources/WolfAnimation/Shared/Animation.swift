@@ -27,6 +27,7 @@
 //
 
 import WolfCore
+import CoreFoundation
 
 /**
  Actions added to the ActionScheduler are wrapped in an Animation Instance.
