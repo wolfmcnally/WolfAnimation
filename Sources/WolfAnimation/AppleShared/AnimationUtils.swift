@@ -25,7 +25,10 @@
 import WolfNIO
 import WolfCore
 
-#if canImport(AppKit)
+#if canImport(UIKit)
+import UIKit
+public typealias OSViewAnimationOptions = UIView.AnimationOptions
+#elseif canImport(AppKit)
 import AppKit
 public struct OSViewAnimationOptions: OptionSet {
     public let rawValue: UInt
@@ -58,9 +61,6 @@ public struct OSViewAnimationOptions: OptionSet {
     public static var transitionFlipFromTop     = OSViewAnimationOptions(rawValue: 6 << 20)
     public static var transitionFlipFromBottom  = OSViewAnimationOptions(rawValue: 7 << 20)
 }
-#elseif canImport(UIKit)
-import UIKit
-public typealias OSViewAnimationOptions = UIView.AnimationOptions
 #endif
 
 public let defaultAnimationDuration: TimeInterval = 0.4
