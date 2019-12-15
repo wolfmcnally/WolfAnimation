@@ -26,8 +26,8 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
 import CoreFoundation
+import WolfConcurrency
 
 /** Runs several actions in parallel */
 public class ActionGroup: FiniteTimeAction, SchedulableAction {

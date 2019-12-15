@@ -26,8 +26,9 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
 import CoreFoundation
+import WolfNumerics
+import WolfConcurrency
 
 /** Action to animate between two values */
 public class InterpolationAction<T: Interpolable>: FiniteTimeAction {

@@ -26,8 +26,8 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
 import CoreFoundation
+import WolfConcurrency
 
 /** Animates inner action to end and then back to beginning */
 public class YoyoAction: FiniteTimeAction {

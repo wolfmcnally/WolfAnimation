@@ -26,8 +26,8 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
 import CoreFoundation
+import WolfConcurrency
 
 /** Can be used to add a delay to a sequence */
 public class DelayAction: FiniteTimeAction {

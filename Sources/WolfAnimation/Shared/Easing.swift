@@ -26,8 +26,8 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
 import Foundation
+import WolfNumerics
 
 public enum Easing {
     private typealias `Self` = Easing

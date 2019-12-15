@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 import PackageDescription
 
 let package = Package(
@@ -9,16 +9,25 @@ let package = Package(
     products: [
         .library(
             name: "WolfAnimation",
+            type: .dynamic,
             targets: ["WolfAnimation"]),
         ],
     dependencies: [
-        .package(url: "https://github.com/wolfmcnally/WolfCore", from: "5.0.0"),
+        .package(url: "https://github.com/wolfmcnally/WolfConcurrency", from: "3.0.0"),
         .package(url: "https://github.com/wolfmcnally/WolfLog", from: "2.0.0"),
         .package(url: "https://github.com/wolfmcnally/WolfNIO", from: "1.0.0"),
+        .package(url: "https://github.com/wolfmcnally/WolfFoundation", from: "5.0.0"),
+        .package(url: "https://github.com/wolfmcnally/WolfNumerics", from: "4.0.0"),
     ],
     targets: [
         .target(
             name: "WolfAnimation",
-            dependencies: ["WolfCore", "WolfLog", "WolfNIO"])
+            dependencies: [
+                "WolfConcurrency",
+                "WolfLog",
+                "WolfNIO",
+                "WolfFoundation",
+                "WolfNumerics"
+        ])
         ]
 )

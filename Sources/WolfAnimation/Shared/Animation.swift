@@ -26,8 +26,8 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
 import CoreFoundation
+import WolfConcurrency
 
 /**
  Actions added to the ActionScheduler are wrapped in an Animation Instance.

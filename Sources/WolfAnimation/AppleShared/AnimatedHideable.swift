@@ -28,8 +28,8 @@ import AppKit
 import UIKit
 #endif
 
-import WolfCore
 import WolfNIO
+import WolfFoundation
 
 public protocol AnimatedHideable: Hideable {
     var alpha: CGFloat { get set }

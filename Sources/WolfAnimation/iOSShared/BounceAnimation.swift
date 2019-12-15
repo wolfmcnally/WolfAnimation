@@ -24,7 +24,7 @@
 
 #if canImport(UIKit)
 import UIKit
-import WolfCore
+import WolfConcurrency
 
 public class BounceAnimation {
     private unowned let view: UIView

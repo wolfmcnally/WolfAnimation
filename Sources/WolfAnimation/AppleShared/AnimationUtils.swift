@@ -23,7 +23,7 @@
 //  SOFTWARE.
 
 import WolfNIO
-import WolfCore
+import WolfConcurrency
 
 #if canImport(UIKit)
 import UIKit

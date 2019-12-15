@@ -25,7 +25,7 @@
 #if canImport(UIKit)
 import Foundation
 import WolfLog
-import WolfCore
+import WolfConcurrency
 
 extension LogGroup {
     public static let timeline = LogGroup("timeline")
@@ -56,12 +56,12 @@ public class Timeline {
         public static func < (lhs: Event, rhs: Event) -> Bool { return lhs.time < rhs.time }
 
         public var description: String {
-            return "\(name) (\(time %% 3))"
+            return "\(name) (\(time /*%% 3*/))"
         }
 
         func execute(at executeTime: CFTimeInterval) {
             self.executeTime = executeTime
-            logTrace("\(name) (\(executeTime %% 3) - \(time %% 3) = \((executeTime - time) %% 3))", group: .timeline)
+            logTrace("\(name) (\(executeTime /*%% 3*/) - \(time /*%% 3*/) = \((executeTime - time) /*%% 3*/))", group: .timeline)
             action()
         }
     }

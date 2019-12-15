@@ -26,7 +26,7 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
+import WolfNumerics
 
 public protocol Tweenable: Interpolable {
     /**

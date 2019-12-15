@@ -24,7 +24,7 @@
 
 #if canImport(UIKit)
 import UIKit
-import WolfCore
+import WolfFoundation
 
 public class DisplayLink: Invalidatable {
     public typealias FiredBlock = (DisplayLink) -> Void

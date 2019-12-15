@@ -26,8 +26,8 @@
 // Based on TweenKit by Steve Barnegren: https://github.com/SteveBarnegren/TweenKit
 //
 
-import WolfCore
 import CoreFoundation
+import WolfConcurrency
 
 /** Runs a block. Can be used to add callbacks in sequences */
 public class RunBlockAction: TriggerAction {

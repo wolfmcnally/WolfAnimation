@@ -27,8 +27,8 @@
 //
 
 #if canImport(UIKit)
-import WolfCore
 import CoreFoundation
+import WolfConcurrency
 
 public class ActionScheduler: Cancelable {
     public var isCanceled: Bool {
